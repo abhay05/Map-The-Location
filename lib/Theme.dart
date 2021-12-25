@@ -3,17 +3,27 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MapTheme {
   static TextTheme lightTextTheme = TextTheme(
-    bodyText1: GoogleFonts.openSans(
-      color: Colors.black,
-      fontSize: 25,
-      fontWeight: FontWeight.w600,
-    ),
-    bodyText2: GoogleFonts.openSans(
-      color: Colors.black,
-      fontSize: 10,
-      fontWeight: FontWeight.normal,
-    ),
-  );
+      bodyText1: GoogleFonts.openSans(
+        color: Colors.black,
+        fontSize: 25,
+        fontWeight: FontWeight.w600,
+      ),
+      bodyText2: GoogleFonts.openSans(
+        color: Colors.black,
+        fontSize: 10,
+        fontWeight: FontWeight.normal,
+      ),
+      subtitle2: GoogleFonts.openSans(
+        color: Colors.black54,
+        fontSize: 17,
+        fontWeight: FontWeight.w600,
+      ),
+      headline6: GoogleFonts.openSans(
+        fontSize: 20,
+        color: Colors
+            .black54, //Color(0xff008F8F), // dark cyan , can be import for field names in a form
+        fontWeight: FontWeight.w600,
+      ));
 
   static ThemeData light() {
     //overriding Theme.light() functions which is default value for Theme

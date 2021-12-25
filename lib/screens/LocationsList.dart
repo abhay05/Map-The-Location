@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/LocationsProvider.dart';
 import '../widgets/LocationCard.dart';
+import './LocationAdd.dart';
 
 class LocationsList extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -16,7 +17,20 @@ class LocationsList extends StatelessWidget {
         //   ),
         //),
         iconTheme: Theme.of(context).iconTheme,
-        actions: [IconButton(icon: Icon(Icons.add), onPressed: () {})],
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) {
+                    return AddLocation();
+                  },
+                ),
+              );
+            },
+          ),
+        ],
 
         //backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         // backgroundColor: Color(
