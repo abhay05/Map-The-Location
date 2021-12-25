@@ -1,4 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as syspath;
 
 class AddLocation extends StatefulWidget {
   AddLocationState createState() {
@@ -9,6 +13,23 @@ class AddLocation extends StatefulWidget {
 class AddLocationState extends State<AddLocation> {
   TextEditingController _textController = TextEditingController();
   int _imageLoaded = 0;
+  File _clickedImage;
+
+  Future<void> clickImage() async {
+    _clickedImage = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      maxWidth: 600,
+    );
+    _imageLoaded = 1;
+    setState(() {
+      //       _imageLoaded = _imageLoaded == 1 ? 0 : 1;
+    });
+    // make sure quality of image is high only if needed
+    Directory storagepath = await syspath.getApplicationDocumentsDirectory();
+    var filename = path.basename(_clickedImage.path);
+    var storedImage = await _clickedImage.copy('${storagepath.path}/$filename');
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       // bottomNavigationBar: ,
@@ -119,25 +140,20 @@ class AddLocationState extends State<AddLocation> {
                       child: _imageLoaded == 0
                           ? InkWell(
                               splashColor: Theme.of(context).cardTheme.color,
-                              onTap: () {
-                                setState(() {
-                                  _imageLoaded = _imageLoaded == 1 ? 0 : 1;
-                                });
-                              },
+                              onTap:
+                                  clickImage, // clickImage() will call the function while parsing the code instead of when user clicks
+
                               child: Image.asset(
                                 "assets/images/upload-image.png",
                                 fit: BoxFit.contain,
                               ),
                             )
                           : InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _imageLoaded = _imageLoaded == 1 ? 0 : 1;
-                                });
-                              },
-                              child: Image.asset(
-                                "assets/images/city-hall.png",
-                                fit: BoxFit.contain,
+                              onTap: clickImage,
+                              child: Image.file(
+                                _clickedImage,
+                                fit: BoxFit.cover,
+                                //width: double.infinity,
                               ),
                             )),
                 ),
