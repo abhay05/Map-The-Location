@@ -8,7 +8,7 @@ class LocationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       // padding:EdgeInsets.all(0),
-      color:Color(0xffAF97A6),  //Color(0xffCABAC4),
+      //color: Color(0xffAF97A6), //Color(0xffCABAC4),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           15,
@@ -49,7 +49,7 @@ class LocationCard extends StatelessWidget {
                   ),
                   child: Text(
                     location.locationName,
-                    style: MapTheme.lightTextTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ),
                 SizedBox(
@@ -62,7 +62,7 @@ class LocationCard extends StatelessWidget {
                   ),
                   child: Text(
                     location.description,
-                    style: MapTheme.lightTextTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
               ],

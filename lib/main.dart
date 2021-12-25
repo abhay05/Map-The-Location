@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './providers/LocationsProvider.dart';
 import './screens/LocationsList.dart';
+import './Theme.dart';
 
 void main() => runApp(MapApp());
 
@@ -11,6 +12,7 @@ class MapApp extends StatelessWidget {
       value: LocationsProvider(),
       child: MaterialApp(
         home: Home(),
+        theme: MapTheme.light(),
       ),
     );
   }

@@ -9,11 +9,22 @@ class LocationsList extends StatelessWidget {
     var arr = locationsProvider.getLocations;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(
-          0xff4F4047, //0xff382E33,
-        ),
+        //title: Text("This is app bar"),
+        // iconTheme: IconThemeData(
+        //   color: Color(
+        //     0xffE8C9E8,
+        //   ),
+        //),
+        iconTheme: Theme.of(context).iconTheme,
+        actions: [IconButton(icon: Icon(Icons.add), onPressed: () {})],
+
+        //backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        // backgroundColor: Color(
+        //   0xff4F4047, //0xff382E33,
+        // ),
+        elevation: 0,
       ),
-      backgroundColor: Color(0xffEDE9EB),
+      //backgroundColor: Color(0xffEDE9EB),
       body: Column(
         children: [
           SizedBox(
@@ -62,7 +73,8 @@ class LocationsList extends StatelessWidget {
                       borderRadius: BorderRadius.circular(150),
                       border: Border.all(
                         width: 15,
-                        color: Color(0xffEDE9EB),
+                        color: Theme.of(context)
+                            .scaffoldBackgroundColor, //Color(0xffEDE9EB),
                       ),
                       // shape: BoxShape.circle,
                     ),
