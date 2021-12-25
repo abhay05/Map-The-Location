@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
-import '../modals/Location.dart';
+import 'package:provider/provider.dart';
+import '../providers/LocationsProvider.dart';
 import '../widgets/LocationCard.dart';
 
 class LocationsList extends StatelessWidget {
-  List<Location> arr = [
-    Location(
-      description: "Beautiful Location",
-      locationName: "Agra",
-      longitude: 12.5,
-      latitude: 15.3,
-    ),
-    Location(
-      description: "Amazing Place",
-      locationName: "Mainpuri",
-      longitude: 20.5,
-      latitude: 25.3,
-    ),
-  ];
-
   Widget build(BuildContext context) {
+    var locationsProvider = Provider.of<LocationsProvider>(context);
+    var arr = locationsProvider.getLocations;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(
+          0xff4F4047, //0xff382E33,
+        ),
+      ),
+      backgroundColor: Color(0xffEDE9EB),
       body: Column(
         children: [
+          SizedBox(
+            height: 20,
+          ),
           ListView.separated(
               shrinkWrap: true,
               itemBuilder: (ctx, ind) => LocationCard(arr[ind]),
               separatorBuilder: (ctx, ind) => SizedBox(
-                    height: 10,
+                    height: 0,
                   ),
               itemCount: arr.length),
           Expanded(
@@ -49,6 +46,23 @@ class LocationsList extends StatelessWidget {
                       border: Border.all(
                         width: 15,
                         color: Colors.lightBlue,
+                      ),
+                      // shape: BoxShape.circle,
+                    ),
+                    //child:
+                  ),
+                ),
+                Positioned(
+                  top: 15,
+                  left: 15,
+                  child: Container(
+                    height: 170,
+                    width: 170,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(150),
+                      border: Border.all(
+                        width: 15,
+                        color: Color(0xffEDE9EB),
                       ),
                       // shape: BoxShape.circle,
                     ),
