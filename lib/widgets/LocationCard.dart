@@ -26,13 +26,22 @@ class LocationCard extends StatelessWidget {
             // width: 10,
             //color:Colors.blue
 
-            child: CircleAvatar(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                //clipBehavior: ,
-                child: Image.asset("assets/images/beach.jpg"),
-              ),
-            ),
+            child: location.image == null
+                ? CircleAvatar(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      //clipBehavior: ,
+                      child: Image.asset("assets/images/beach.jpg"),
+                    ),
+                  )
+                : CircleAvatar(
+                    backgroundImage: FileImage(location.image),
+                    // ClipRRect(
+                    //   borderRadius: BorderRadius.circular(20),
+                    //   //clipBehavior: ,
+                    //   child: Image.file(location.image),
+                    // ),
+                  ),
           ),
           SizedBox(
             width: 10,

@@ -15,5 +15,6 @@ class Location {
     this.picUrl,
     this.longitude,
     this.latitude,
+    this.image,
   });
 }

@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:map_the_location/providers/LocationsProvider.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspath;
+import 'package:provider/provider.dart';
 
 class AddLocation extends StatefulWidget {
   AddLocationState createState() {
@@ -12,6 +14,7 @@ class AddLocation extends StatefulWidget {
 
 class AddLocationState extends State<AddLocation> {
   TextEditingController _textController = TextEditingController();
+  TextEditingController _locationController = TextEditingController();
   int _imageLoaded = 0;
   File _clickedImage;
 
@@ -20,6 +23,10 @@ class AddLocationState extends State<AddLocation> {
       source: ImageSource.camera,
       maxWidth: 600,
     );
+    if (_clickedImage == null) {
+      return; // if user clicks button without clicking pictures return the function
+      // otherwise we will have errors;
+    }
     _imageLoaded = 1;
     setState(() {
       //       _imageLoaded = _imageLoaded == 1 ? 0 : 1;
@@ -28,6 +35,15 @@ class AddLocationState extends State<AddLocation> {
     Directory storagepath = await syspath.getApplicationDocumentsDirectory();
     var filename = path.basename(_clickedImage.path);
     var storedImage = await _clickedImage.copy('${storagepath.path}/$filename');
+  }
+
+  Future<void> submitForm() {
+    var description = _textController.text;
+    var location = _locationController.text;
+    var pickedImage = _clickedImage;
+    Provider.of<LocationsProvider>(context, listen: false)
+        .addLocations(description, location, pickedImage);
+    Navigator.of(context).pop();
   }
 
   Widget build(BuildContext context) {
@@ -47,7 +63,7 @@ class AddLocationState extends State<AddLocation> {
                         10,
                       ),
                       child: TextFormField(
-                        controller: _textController,
+                        controller: _locationController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -215,7 +231,8 @@ class AddLocationState extends State<AddLocation> {
                   height: 50,
                   margin: EdgeInsets.only(top: 20),
                   color: Theme.of(context).cardTheme.color,
-                  child: Center(
+                  child: FlatButton(
+                    onPressed: submitForm,
                     child: Text(
                       "Add Location",
                       style: TextStyle(
