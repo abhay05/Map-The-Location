@@ -41,8 +41,12 @@ class AddLocationState extends State<AddLocation> {
     var description = _textController.text;
     var location = _locationController.text;
     var pickedImage = _clickedImage;
-    Provider.of<LocationsProvider>(context, listen: false)
-        .addLocations(description, location, pickedImage);
+    Provider.of<LocationsProvider>(context, listen: false).addLocations(
+      DateTime.now().toIso8601String(),
+      description,
+      location,
+      pickedImage,
+    );
     Navigator.of(context).pop();
   }
 

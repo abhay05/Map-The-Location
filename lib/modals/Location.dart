@@ -8,6 +8,7 @@ class Location {
   double latitude;
   File image;
   String address;
+  String id;
 
   Location({
     this.description,
@@ -16,5 +17,6 @@ class Location {
     this.longitude,
     this.latitude,
     this.image,
+    this.id,
   });
 }
