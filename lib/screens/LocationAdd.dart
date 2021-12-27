@@ -5,6 +5,7 @@ import 'package:map_the_location/providers/LocationsProvider.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspath;
 import 'package:provider/provider.dart';
+import 'package:location/location.dart';
 
 class AddLocation extends StatefulWidget {
   AddLocationState createState() {
@@ -17,6 +18,13 @@ class AddLocationState extends State<AddLocation> {
   TextEditingController _locationController = TextEditingController();
   int _imageLoaded = 0;
   File _clickedImage;
+  String _previewImageUrl;
+
+  Future<void> _getLocation() async {
+    final coordinates = await Location().getLocation();
+    print(coordinates.latitude);
+    print(coordinates.longitude);
+  }
 
   Future<void> clickImage() async {
     _clickedImage = await ImagePicker.pickImage(
@@ -198,14 +206,25 @@ class AddLocationState extends State<AddLocation> {
                     ),
                     borderRadius: BorderRadius.circular(5),
                   ),
+                  child: _previewImageUrl == null
+                      ? Center(
+                          child: Text("Hello"),
+                        )
+                      : Image.network(
+                          _previewImageUrl,
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Row(children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 4.0),
-                        child: Icon(Icons.add_location_alt),
+                      InkWell(
+                        onTap: _getLocation,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 4.0),
+                          child: Icon(Icons.location_on),
+                        ),
                       ),
                       Text(
                         "Current Location",
