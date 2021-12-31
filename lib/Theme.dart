@@ -5,12 +5,12 @@ class MapTheme {
   static TextTheme lightTextTheme = TextTheme(
       bodyText1: GoogleFonts.openSans(
         color: Colors.black,
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
       bodyText2: GoogleFonts.openSans(
         color: Colors.black,
-        fontSize: 10,
+        fontSize: 15,
         fontWeight: FontWeight.normal,
       ),
       subtitle2: GoogleFonts.openSans(
