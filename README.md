@@ -3,7 +3,7 @@ A flutter app to save all your favorite places.
 
 ## Description
 
-- Save all your favourite places.
+- Save all your favorite places.
 - Add name, description, pictures and location on the map for a place.
 
 
