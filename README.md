@@ -1,16 +1,14 @@
-# map_the_location
+# Your-Travels
+A flutter app to save all your favorite places.
 
-A new Flutter project.
+## Description
 
-## Getting Started
+- Save all your favorite places.
+- Add name, description, pictures and location on the map for a place.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://user-images.githubusercontent.com/23046900/147866366-4894788e-9654-475e-955f-a0a21ee113e8.jpeg" alt="Home Page" width="250" height="500">|<img src="https://user-images.githubusercontent.com/23046900/147866368-fe56c892-f1f5-4e22-a516-27ab9a252cb1.jpeg" alt="Add Place Form" width="250" height="500">
+:-:|:-:
+*Home Page* | *Add Place Form* 
